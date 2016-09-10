@@ -25,7 +25,6 @@ package com.semanticcms.news.servlet.impl;
 import static com.aoindustries.encoding.TextInXhtmlAttributeEncoder.encodeTextInXhtmlAttribute;
 import com.aoindustries.lang.NotImplementedException;
 import com.semanticcms.core.model.Element;
-import com.semanticcms.core.model.Node;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.servlet.CaptureLevel;
@@ -54,11 +53,9 @@ final public class NewsImpl {
 		// Get the current capture state
 		final CaptureLevel captureLevel = CaptureLevel.getCaptureLevel(request);
 		if(captureLevel.compareTo(CaptureLevel.META) >= 0) {
-			final Node currentNode = CurrentNode.getCurrentNode(request);
+			assert CurrentNode.getCurrentNode(request) == news;
 			final Page currentPage = CurrentPage.getCurrentPage(request);
 			if(currentPage == null) throw new ServletException("news must be nested within a page");
-
-			final String element = news.getElement();
 
 			// Find the target page
 			PageRef currentPageRef = currentPage.getPageRef();
@@ -83,15 +80,9 @@ final public class NewsImpl {
 					news.getTargetPage()
 				);
 			}
-			// Set book and targetPage always, since news is used from views on other pages
-			news.setBook(targetPageRef.getBookName());
-			news.setTargetPage(targetPageRef.getPath());
 			// Add page links if linking to another page
-			if(
-				currentNode != null
-				&& !targetPageRef.equals(currentPageRef)
-			) {
-				currentNode.addPageLink(targetPageRef);
+			if(!targetPageRef.equals(currentPageRef)) {
+				news.addPageLink(targetPageRef);
 			}
 			// The target page will be null when in a missing book
 			Page targetPage;
@@ -101,8 +92,8 @@ final public class NewsImpl {
 				// Short-cut for element already added above within current page
 				targetPageRef.equals(currentPageRef)
 				&& (
-					element==null
-					|| currentPage.getElementsById().containsKey(element)
+					news.getElement()==null
+					|| currentPage.getElementsById().containsKey(news.getElement())
 				)
 			) {
 				targetPage = currentPage;
@@ -115,16 +106,18 @@ final public class NewsImpl {
 					request,
 					response,
 					targetPageRef,
-					element==null ? CaptureLevel.PAGE : CaptureLevel.META
+					news.getElement()==null ? CaptureLevel.PAGE : CaptureLevel.META
 				);
 			}
 			// Find the optional target element, may remain null when in missing book
 			Element targetElement;
-			if(element == null) {
-				if(news.getBook() == null && news.getPage() == null) {
-					if(currentNode instanceof Element) {
-						// Default to current element
-						targetElement = (Element)currentNode;
+			if(news.getElement() == null) {
+				if(news.getBook() == null && news.getTargetPage() == null) {
+					Element parentElem = news.getParentElement();
+					if(parentElem != null) {
+						// Default to parent of current element
+						targetElement = parentElem;
+						news.setElement(targetElement.getId());
 					} else {
 						// No current element
 						targetElement = null;
@@ -136,21 +129,27 @@ final public class NewsImpl {
 			} else {
 				// Find the element
 				if(targetPage != null) {
-					targetElement = targetPage.getElementsById().get(element);
-					if(targetElement == null) throw new ServletException("Element not found in target page: " + element);
-					if(targetPage.getGeneratedIds().contains(element)) throw new ServletException("Not allowed to link to a generated element id, set an explicit id on the target element: " + element);
+					targetElement = targetPage.getElementsById().get(news.getElement());
+					if(targetElement == null) throw new ServletException("Element not found in target page: " + news.getElement());
+					if(targetPage.getGeneratedIds().contains(news.getElement())) throw new ServletException("Not allowed to link to a generated element id, set an explicit id on the target element: " + news.getElement());
 				} else {
 					targetElement = null;
 				}
 			}
+			// Set book and targetPage always, since news is used from views on other pages
+			// These must be set after finding the element, since book/page being null affects which element, if any, is used
+			news.setBook(targetPageRef.getBookName());
+			news.setTargetPage(targetPageRef.getPath());
+			// Find the title if not set
 			if(news.getTitle() == null) {
 				String title;
-				if(element != null) {
+				if(news.getElement() != null) {
 					if(targetElement == null) {
 						// Element in missing book
-						title = LinkImpl.getBrokenPath(targetPageRef, element);
+						title = LinkImpl.getBrokenPath(targetPageRef, news.getElement());
 					} else {
 						title = targetElement.getLabel();
+						if(title == null || title.isEmpty()) throw new IllegalStateException("No label from targetElement: " + targetElement);
 					}
 				} else {
 					if(targetPage == null) {
