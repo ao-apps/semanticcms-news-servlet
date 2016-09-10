@@ -80,10 +80,10 @@ final public class NewsImpl {
 					news.getTargetPage()
 				);
 			}
-			// Add page links if linking to another page
-			if(!targetPageRef.equals(currentPageRef)) {
-				news.addPageLink(targetPageRef);
-			}
+			// Add page links
+			// TODO: Allow view="news" somehow in the "what-links-here", as-is news elements are hidden and don't show.
+			//       would have to check all views for what-links-here, but it could work?
+			news.addPageLink(targetPageRef);
 			// The target page will be null when in a missing book
 			Page targetPage;
 			if(targetPageRef.getBook()==null) {
