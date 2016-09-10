@@ -83,8 +83,16 @@ final public class NewsImpl {
 					news.getTargetPage()
 				);
 			}
-			// Add page links
-			if(currentNode != null) currentNode.addPageLink(targetPageRef);
+			// Set book and targetPage always, since news is used from views on other pages
+			news.setBook(targetPageRef.getBookName());
+			news.setTargetPage(targetPageRef.getPath());
+			// Add page links if linking to another page
+			if(
+				currentNode != null
+				&& !targetPageRef.equals(currentPageRef)
+			) {
+				currentNode.addPageLink(targetPageRef);
+			}
 			// The target page will be null when in a missing book
 			Page targetPage;
 			if(targetPageRef.getBook()==null) {
