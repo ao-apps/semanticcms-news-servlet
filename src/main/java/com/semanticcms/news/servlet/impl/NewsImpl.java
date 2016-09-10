@@ -82,7 +82,8 @@ final public class NewsImpl {
 			}
 			// Add page links
 			// TODO: Allow view="news" somehow in the "what-links-here", as-is news elements are hidden and don't show.
-			//       would have to check all views for what-links-here, but it could work?
+			//       Or show news elements but they link to "news" view (when present).
+			//       Would have to check all views for what-links-here, but it could work?
 			news.addPageLink(targetPageRef);
 			// The target page will be null when in a missing book
 			Page targetPage;
