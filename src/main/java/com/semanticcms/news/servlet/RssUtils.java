@@ -25,6 +25,7 @@ package com.semanticcms.news.servlet;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
 import java.util.Arrays;
+import javax.servlet.ServletContext;
 
 /**
  * Utilities for working with RSS feeds.
@@ -34,6 +35,33 @@ final public class RssUtils {
 	public static final String EXTENSION = ".rss";
 
 	public static final String CONTENT_TYPE = "application/rss+xml";
+
+	/**
+	 * Using classname to avoid introducing cyclic dependency.
+	 */
+	private static final String RSS_SERVLET_CLASSNAME = "com.semanticcms.news.rss.RssServlet";
+
+	private static final String ISS_RSS_ENABLED_CACHE_KEY = RssUtils.class.getName() + ".isRssEnabled";
+
+	/**
+	 * Checks if the RSS module is installed.  This is done by checking for the existence of the
+	 * servlet class.  This is cached in application scope to avoid throwing and catching ClassNotFoundException
+	 * repeatedly.
+	 */
+	public static boolean isRssEnabled(ServletContext servletContext) {
+		// Note: no locking performed since it's ok for two threads to do the work concurrently at first
+		Boolean isRssEnabled = (Boolean)servletContext.getAttribute(ISS_RSS_ENABLED_CACHE_KEY);
+		if(isRssEnabled == null) {
+			try {
+				Class.forName(RSS_SERVLET_CLASSNAME);
+				isRssEnabled = true;
+			} catch(ClassNotFoundException e) {
+				isRssEnabled = false;
+			}
+			servletContext.setAttribute(ISS_RSS_ENABLED_CACHE_KEY, isRssEnabled);
+		}
+		return isRssEnabled;
+	}
 
 	/**
 	 * The resources in the order they will be checked, last one assumed if none specifically found as a resource.
