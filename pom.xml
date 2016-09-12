@@ -27,7 +27,7 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 	<parent>
 		<groupId>com.semanticcms</groupId>
 		<artifactId>semanticcms-news</artifactId>
-		<version>1.0</version>
+		<version>1.1-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.semanticcms</groupId>
@@ -36,7 +36,7 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 	<packaging>jar</packaging>
 
 	<name>SemanticCMS News Servlet</name>
-	<url>https://semanticcms.com/docs/semanticcms-news-servlet/</url>
+	<url>https://semanticcms.com/news/servlet/</url>
 	<description>SemanticCMS newsfeeds in a Servlet environment.</description>
 
 	<scm>
@@ -84,17 +84,17 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 		<dependency>
 			<groupId>com.semanticcms</groupId>
 			<artifactId>semanticcms-core-model</artifactId>
-			<version>1.6</version>
+			<version>1.7-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.semanticcms</groupId>
 			<artifactId>semanticcms-core-servlet</artifactId>
-			<version>1.7</version>
+			<version>1.8-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.semanticcms</groupId>
 			<artifactId>semanticcms-news-model</artifactId>
-			<version>1.0</version>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
