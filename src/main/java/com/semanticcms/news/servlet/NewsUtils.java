@@ -31,9 +31,7 @@ import com.semanticcms.news.model.News;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,52 +51,36 @@ final public class NewsUtils {
 		ServletContext servletContext,
 		HttpServletRequest request,
 		HttpServletResponse response,
-		Page page
+		PageRef pageRef
 	) throws ServletException, IOException {
-		List<News> found = new ArrayList<News>();
-		findAllNewsRecursive(
+		final List<News> found = new ArrayList<News>();
+		CapturePage.traversePagesDepthFirst(
 			servletContext,
 			request,
 			response,
-			page,
-			found,
-			new HashSet<PageRef>()
+			pageRef,
+			CaptureLevel.META,
+			new CapturePage.PageHandler() {
+				@Override
+				public void handlePage(Page page) throws ServletException, IOException {
+					for(Element element : page.getElements()) {
+						if(element instanceof News) {
+							found.add((News)element);
+						}
+					}
+				}
+			},
+			new CapturePage.ChildPageFilter() {
+				@Override
+				public boolean includeChildPage(Page page, PageRef childRef) {
+					// Child not in missing book
+					return childRef.getBook() != null;
+				}
+			},
+			null
 		);
 		Collections.sort(found);
 		return Collections.unmodifiableList(found);
-	}
-
-	private static void findAllNewsRecursive(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		Page page,
-		List<News> found,
-		Set<PageRef> seenPages
-	) throws ServletException, IOException {
-		if(!seenPages.add(page.getPageRef())) throw new AssertionError();
-		for(Element element : page.getElements()) {
-			if(element instanceof News) {
-				found.add((News)element);
-			}
-		}
-		for(PageRef childRef : page.getChildPages()) {
-			if(
-				// Child not in missing book
-				childRef.getBook() != null
-				// Not already seen
-				&& !seenPages.contains(childRef)
-			) {
-				findAllNewsRecursive(
-					servletContext,
-					request,
-					response,
-					CapturePage.capturePage(servletContext, request, response, childRef, CaptureLevel.META),
-					found,
-					seenPages
-				);
-			}
-		}
 	}
 
 	/**
