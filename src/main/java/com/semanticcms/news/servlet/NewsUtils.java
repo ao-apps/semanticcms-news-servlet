@@ -51,14 +51,14 @@ final public class NewsUtils {
 		ServletContext servletContext,
 		HttpServletRequest request,
 		HttpServletResponse response,
-		PageRef pageRef
+		Page page
 	) throws ServletException, IOException {
 		final List<News> found = new ArrayList<News>();
 		CapturePage.traversePagesDepthFirst(
 			servletContext,
 			request,
 			response,
-			pageRef,
+			page,
 			CaptureLevel.META,
 			new CapturePage.PageHandler() {
 				@Override
