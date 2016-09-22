@@ -27,9 +27,11 @@ import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CapturePage;
+import com.semanticcms.core.servlet.PageUtils;
 import com.semanticcms.news.model.News;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -70,11 +72,11 @@ final public class NewsUtils {
 					}
 				}
 			},
-			new CapturePage.ChildPageFilter() {
+			new CapturePage.TraversalEdges() {
 				@Override
-				public boolean includeChildPage(Page page, PageRef childRef) {
+				public Collection<PageRef> getEdges(Page page) {
 					// Child not in missing book
-					return childRef.getBook() != null;
+					return PageUtils.filterNotMissingBook(page.getChildPages());
 				}
 			},
 			null
