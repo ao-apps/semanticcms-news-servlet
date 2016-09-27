@@ -27,7 +27,6 @@ import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CapturePage;
-import com.semanticcms.core.servlet.PageUtils;
 import com.semanticcms.news.model.News;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,30 +55,35 @@ final public class NewsUtils {
 		Page page
 	) throws ServletException, IOException {
 		final List<News> found = new ArrayList<News>();
-		CapturePage.traversePagesDepthFirst(
+		CapturePage.traversePagesAnyOrder(
 			servletContext,
 			request,
 			response,
 			page,
 			CaptureLevel.META,
-			new CapturePage.PageHandler() {
+			new CapturePage.PageHandler<Void>() {
 				@Override
-				public void handlePage(Page page) throws ServletException, IOException {
+				public Void handlePage(Page page) throws ServletException, IOException {
 					for(Element element : page.getElements()) {
 						if(element instanceof News) {
 							found.add((News)element);
 						}
 					}
+					return null;
 				}
 			},
 			new CapturePage.TraversalEdges() {
 				@Override
 				public Collection<PageRef> getEdges(Page page) {
-					// Child not in missing book
-					return PageUtils.filterNotMissingBook(page.getChildPages());
+					return page.getChildPages();
 				}
 			},
-			null
+			new CapturePage.EdgeFilter() {
+				@Override
+				public boolean applyEdge(PageRef childPage) {
+					return childPage.getBook() != null;
+				}
+			}
 		);
 		Collections.sort(found);
 		return Collections.unmodifiableList(found);
