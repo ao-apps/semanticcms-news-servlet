@@ -26,8 +26,8 @@ import com.aoindustries.io.TempFileList;
 import com.aoindustries.io.buffer.AutoTempFileWriter;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
-import com.aoindustries.io.buffer.SegmentedWriter;
 import com.aoindustries.servlet.filter.TempFileContext;
+import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.Element;
@@ -141,7 +141,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		if(captureLevel == CaptureLevel.BODY) {
 			// Enable temp files if temp file context active
 			capturedOut = TempFileContext.wrapTempFileList(
-				new SegmentedWriter(),
+				AutoEncodingBufferedTag.newBufferWriter(),
 				request,
 				// Java 1.8: AutoTempFileWriter::new
 				new TempFileContext.Wrapper<BufferWriter>() {
