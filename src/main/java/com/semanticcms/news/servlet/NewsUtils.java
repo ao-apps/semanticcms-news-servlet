@@ -22,6 +22,7 @@
  */
 package com.semanticcms.news.servlet;
 
+import com.semanticcms.core.model.ChildRef;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
@@ -74,8 +75,8 @@ final public class NewsUtils {
 			},
 			new CapturePage.TraversalEdges() {
 				@Override
-				public Collection<PageRef> getEdges(Page page) {
-					return page.getChildPages();
+				public Collection<ChildRef> getEdges(Page page) {
+					return page.getChildRefs();
 				}
 			},
 			new CapturePage.EdgeFilter() {
