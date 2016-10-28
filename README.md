@@ -1,5 +1,5 @@
 # [<img src="ao-logo.png" alt="AO Logo" width="35" height="40">](https://www.aoindustries.com/) [SemanticCMS](https://semanticcms.com/) / [News](https://semanticcms.com/news/) / [Servlet](https://semanticcms.com/news/servlet/)
-[SemanticCMS](https://semanticcms.com/) newsfeeds in a Servlet environment.
+[SemanticCMS newsfeeds](https://semanticcms.com/news/) in a Servlet environment.
 
 ## Project Links
 * [Project Home](https://semanticcms.com/news/servlet/)
