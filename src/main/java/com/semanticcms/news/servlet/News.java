@@ -41,7 +41,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
-import org.joda.time.DateTime;
 import org.joda.time.ReadableDateTime;
 
 public class News extends Element<com.semanticcms.news.model.News> {
@@ -66,7 +65,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		ServletContext servletContext,
 		HttpServletRequest request,
 		HttpServletResponse response,
-		DateTime pubDate,
+		ReadableDateTime pubDate,
 		String description
 	) {
 		this(servletContext, request, response, pubDate);
@@ -78,7 +77,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 	 *
 	 * @see  PageContext
 	 */
-	public News(DateTime pubDate) {
+	public News(ReadableDateTime pubDate) {
 		this(
 			PageContext.getServletContext(),
 			PageContext.getRequest(),
@@ -92,7 +91,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 	 *
 	 * @see  PageContext
 	 */
-	public News(DateTime pubDate, String description) {
+	public News(ReadableDateTime pubDate, String description) {
 		this(pubDate);
 		element.setDescription(description);
 	}
