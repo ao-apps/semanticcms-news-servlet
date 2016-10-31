@@ -167,7 +167,7 @@ final public class NewsImpl {
 				String refId = PageIndex.getRefIdInPage(servletContext, request, currentPage, news.getId());
 				out.append("<div class=\"semanticcms-news-anchor\" id=\"");
 				encodeTextInXhtmlAttribute(refId, out);
-				out.append("\" />");
+				out.append("\"></div>");
 				// TODO: Should we show the news entry here when no news view is active?
 				// TODO: Hide from tree views, or leave but link to "news" view when news view is active?
 			}
