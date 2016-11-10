@@ -36,13 +36,12 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 	<packaging>jar</packaging>
 
 	<properties>
-		<bookPath>/news/servlet</bookPath>
 		<shortTitle>Servlet</shortTitle>
 		<description.html><![CDATA[<a target="_top" href="https://semanticcms.com/news/">SemanticCMS newsfeeds</a> in a Servlet environment.]]></description.html>
 	</properties>
 
 	<name>SemanticCMS News Servlet</name>
-	<url>https://semanticcms.com${bookPath}/</url><!-- Can't inherit due to multi-module -->
+	<url>https://semanticcms.com/news/servlet/</url>
 	<description>SemanticCMS newsfeeds in a Servlet environment.</description>
 	<inceptionYear>2016</inceptionYear>
 
