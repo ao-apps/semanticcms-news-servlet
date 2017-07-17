@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016  AO Industries, Inc.
+ * Copyright (C) 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -49,13 +49,14 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		ServletContext servletContext,
 		HttpServletRequest request,
 		HttpServletResponse response,
+		com.semanticcms.news.model.News element,
 		ReadableDateTime pubDate
 	) {
 		super(
 			servletContext,
 			request,
 			response,
-			new com.semanticcms.news.model.News()
+			element
 		);
 		element.setView(SemanticCMS.DEFAULT_VIEW_NAME);
 		element.setPubDate(pubDate);
@@ -65,11 +66,62 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		ServletContext servletContext,
 		HttpServletRequest request,
 		HttpServletResponse response,
+		ReadableDateTime pubDate
+	) {
+		this(
+			servletContext,
+			request,
+			response,
+			new com.semanticcms.news.model.News(),
+			pubDate
+		);
+	}
+
+	public News(
+		ServletContext servletContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		com.semanticcms.news.model.News element,
 		ReadableDateTime pubDate,
 		String description
 	) {
-		this(servletContext, request, response, pubDate);
+		this(servletContext, request, response, element, pubDate);
 		element.setDescription(description);
+	}
+
+	public News(
+		ServletContext servletContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		ReadableDateTime pubDate,
+		String description
+	) {
+		this(
+			servletContext,
+			request,
+			response,
+			new com.semanticcms.news.model.News(),
+			pubDate
+		);
+		element.setDescription(description);
+	}
+
+	/**
+	 * Creates news in the current page context.
+	 *
+	 * @see  PageContext
+	 */
+	public News(
+		com.semanticcms.news.model.News element,
+		ReadableDateTime pubDate
+	) {
+		this(
+			PageContext.getServletContext(),
+			PageContext.getRequest(),
+			PageContext.getResponse(),
+			element,
+			pubDate
+		);
 	}
 
 	/**
@@ -82,8 +134,23 @@ public class News extends Element<com.semanticcms.news.model.News> {
 			PageContext.getServletContext(),
 			PageContext.getRequest(),
 			PageContext.getResponse(),
+			new com.semanticcms.news.model.News(),
 			pubDate
 		);
+	}
+
+	/**
+	 * Creates news in the current page context.
+	 *
+	 * @see  PageContext
+	 */
+	public News(
+		com.semanticcms.news.model.News element,
+		ReadableDateTime pubDate,
+		String description
+	) {
+		this(element, pubDate);
+		element.setDescription(description);
 	}
 
 	/**
