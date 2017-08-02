@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016  AO Industries, Inc.
+ * Copyright (C) 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -99,7 +99,7 @@ final public class RssUtils {
 	 * Gets the servletPath to the RSS feed for the give page ref.
 	 */
 	public static String getRssServletPath(PageRef pageRef) {
-		String servletPath = pageRef.getServletPath();
+		String servletPath = pageRef.getBookRef().getPrefix() + pageRef.getPath();
 		for(String extension : RESOURCE_EXTENSIONS) {
 			if(servletPath.endsWith(extension)) {
 				servletPath = servletPath.substring(0, servletPath.length() - extension.length());
