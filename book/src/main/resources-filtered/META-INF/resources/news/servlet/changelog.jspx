@@ -37,7 +37,7 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-31T00:37:52-0500"
-		dateModified="2017-07-19T23:08:09-0500"
+		dateModified="2017-08-02T12:50:18-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.semanticcms:semanticcms-news-servlet:pom.version}" />
@@ -52,7 +52,11 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			/>
+			>
+				<ul>
+					<li>Added <core:link book="/" page="/index.jspx" /> domain support.</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release

@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016  AO Industries, Inc.
+ * Copyright (C) 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -24,6 +24,7 @@ package com.semanticcms.news.servlet.impl;
 
 import static com.aoindustries.encoding.TextInXhtmlAttributeEncoder.encodeTextInXhtmlAttribute;
 import com.aoindustries.lang.NotImplementedException;
+import com.semanticcms.core.model.BookRef;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
@@ -33,6 +34,7 @@ import com.semanticcms.core.servlet.CurrentNode;
 import com.semanticcms.core.servlet.CurrentPage;
 import com.semanticcms.core.servlet.PageIndex;
 import com.semanticcms.core.servlet.PageRefResolver;
+import com.semanticcms.core.servlet.SemanticCMS;
 import com.semanticcms.core.servlet.impl.LinkImpl;
 import com.semanticcms.news.model.News;
 import java.io.IOException;
@@ -57,16 +59,22 @@ final public class NewsImpl {
 			final Page currentPage = CurrentPage.getCurrentPage(request);
 			if(currentPage == null) throw new ServletException("news must be nested within a page");
 
+			if(news.getDomain() != null && news.getBook() == null) {
+				throw new ServletException("book required when domain provided.");
+			}
+
 			// Find the target page
-			PageRef currentPageRef = currentPage.getPageRef();
-			PageRef targetPageRef;
+			final PageRef currentPageRef = currentPage.getPageRef();
+			final PageRef targetPageRef;
 			if(news.getBook() == null) {
+				assert news.getDomain() == null;
 				if(news.getTargetPage() == null) {
 					targetPageRef = currentPageRef;
 				} else {
 					targetPageRef = PageRefResolver.getPageRef(
 						servletContext,
 						request,
+						null,
 						null,
 						news.getTargetPage()
 					);
@@ -76,6 +84,7 @@ final public class NewsImpl {
 				targetPageRef = PageRefResolver.getPageRef(
 					servletContext,
 					request,
+					news.getDomain(),
 					news.getBook(),
 					news.getTargetPage()
 				);
@@ -86,8 +95,9 @@ final public class NewsImpl {
 			//       Would have to check all views for what-links-here, but it could work?
 			news.addPageLink(targetPageRef);
 			// The target page will be null when in a missing book
+			final BookRef targetBookRef = targetPageRef.getBookRef();
 			Page targetPage;
-			if(targetPageRef.getBook()==null) {
+			if(!SemanticCMS.getInstance(servletContext).getBook(targetBookRef).isAccessible()) {
 				targetPage = null;
 			} else if(
 				// Short-cut for element already added above within current page
@@ -139,7 +149,8 @@ final public class NewsImpl {
 			}
 			// Set book and targetPage always, since news is used from views on other pages
 			// These must be set after finding the element, since book/page being null affects which element, if any, is used
-			news.setBook(targetPageRef.getBookName());
+			news.setDomain(targetBookRef.getDomain());
+			news.setBook(targetBookRef.getName());
 			news.setTargetPage(targetPageRef.getPath());
 			// Find the title if not set
 			if(news.getTitle() == null) {

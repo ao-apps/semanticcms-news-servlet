@@ -169,6 +169,11 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		return this;
 	}
 
+	public News domain(String domain) {
+		element.setDomain(domain);
+		return this;
+	}
+
 	public News book(String book) {
 		element.setBook(book);
 		return this;
