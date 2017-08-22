@@ -28,8 +28,9 @@ import com.semanticcms.core.model.BookRef;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
-import com.semanticcms.core.servlet.CaptureLevel;
+import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.core.servlet.CapturePage;
+import com.semanticcms.core.servlet.CurrentCaptureLevel;
 import com.semanticcms.core.servlet.CurrentNode;
 import com.semanticcms.core.servlet.CurrentPage;
 import com.semanticcms.core.servlet.PageIndex;
@@ -53,7 +54,7 @@ final public class NewsImpl {
 		News news
 	) throws ServletException, IOException {
 		// Get the current capture state
-		final CaptureLevel captureLevel = CaptureLevel.getCaptureLevel(request);
+		final CaptureLevel captureLevel = CurrentCaptureLevel.getCaptureLevel(request);
 		if(captureLevel.compareTo(CaptureLevel.META) >= 0) {
 			assert CurrentNode.getCurrentNode(request) == news;
 			final Page currentPage = CurrentPage.getCurrentPage(request);
@@ -150,8 +151,8 @@ final public class NewsImpl {
 			// Set book and targetPage always, since news is used from views on other pages
 			// These must be set after finding the element, since book/page being null affects which element, if any, is used
 			news.setDomain(targetBookRef.getDomain());
-			news.setBook(targetBookRef.getName());
-			news.setTargetPage(targetPageRef.getPath());
+			news.setBook(targetBookRef.getPath());
+			news.setTargetPage(targetPageRef.getPath().toString());
 			// Find the title if not set
 			if(news.getTitle() == null) {
 				String title;

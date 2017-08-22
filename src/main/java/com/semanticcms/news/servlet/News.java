@@ -24,9 +24,10 @@ package com.semanticcms.news.servlet;
 
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
+import com.aoindustries.net.Path;
 import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.semanticcms.core.model.ElementContext;
-import com.semanticcms.core.servlet.CaptureLevel;
+import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.core.servlet.Element;
 import com.semanticcms.core.servlet.PageContext;
 import com.semanticcms.core.servlet.SemanticCMS;
@@ -171,7 +172,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		return this;
 	}
 
-	public News book(String book) {
+	public News book(Path book) {
 		element.setBook(book);
 		return this;
 	}
