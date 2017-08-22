@@ -24,6 +24,7 @@ package com.semanticcms.news.servlet;
 
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
+import com.aoindustries.net.DomainName;
 import com.aoindustries.net.Path;
 import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.semanticcms.core.model.ElementContext;
@@ -167,7 +168,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		return this;
 	}
 
-	public News domain(String domain) {
+	public News domain(DomainName domain) {
 		element.setDomain(domain);
 		return this;
 	}
