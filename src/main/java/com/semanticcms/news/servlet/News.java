@@ -28,11 +28,11 @@ import com.aoindustries.net.DomainName;
 import com.aoindustries.net.Path;
 import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.semanticcms.core.model.ElementContext;
+import com.semanticcms.core.model.Link;
 import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.core.pages.local.PageContext;
 import com.semanticcms.core.servlet.Element;
-import com.semanticcms.core.servlet.SemanticCMS;
-import com.semanticcms.news.servlet.impl.NewsImpl;
+import com.semanticcms.news.renderer.html.NewsHtmlRenderer;
 import java.io.IOException;
 import java.io.Writer;
 import javax.servlet.ServletContext;
@@ -57,7 +57,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 			response,
 			element
 		);
-		element.setView(SemanticCMS.DEFAULT_VIEW_NAME);
+		element.setView(Link.DEFAULT_VIEW_NAME);
 		element.setPubDate(pubDate);
 	}
 
@@ -214,7 +214,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 			capturedOut = null;
 		}
 		try {
-			NewsImpl.writeNewsImpl(
+			NewsHtmlRenderer.writeNewsImpl(
 				servletContext,
 				request,
 				response,

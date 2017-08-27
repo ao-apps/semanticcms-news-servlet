@@ -22,13 +22,13 @@
  */
 package com.semanticcms.news.servlet;
 
+import com.semanticcms.core.controller.CapturePage;
+import com.semanticcms.core.controller.SemanticCMS;
 import com.semanticcms.core.model.ChildRef;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.pages.CaptureLevel;
-import com.semanticcms.core.servlet.CapturePage;
-import com.semanticcms.core.servlet.SemanticCMS;
 import com.semanticcms.news.model.News;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,6 +42,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Utilities for working with news.
+ *
+ * TODO: Move to different module?
  */
 final public class NewsUtils {
 
