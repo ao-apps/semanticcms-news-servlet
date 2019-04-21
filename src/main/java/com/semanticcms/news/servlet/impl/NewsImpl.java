@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016  AO Industries, Inc.
+ * Copyright (C) 2016, 2019  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -23,7 +23,6 @@
 package com.semanticcms.news.servlet.impl;
 
 import static com.aoindustries.encoding.TextInXhtmlAttributeEncoder.encodeTextInXhtmlAttribute;
-import com.aoindustries.lang.NotImplementedException;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
@@ -43,6 +42,7 @@ import javax.servlet.http.HttpServletResponse;
 
 final public class NewsImpl {
 
+	@SuppressWarnings("deprecation")
 	public static void writeNewsImpl(
 		ServletContext servletContext,
 		HttpServletRequest request,
@@ -101,7 +101,7 @@ final public class NewsImpl {
 			} else {
 				// Capture required, even if capturing self
 				// TODO: This would cause unbound recursion and stack overflow at this time, there may be a complicate workaround when needed, such as not running this element on the recursive capture
-				if(targetPageRef.equals(currentPageRef)) throw new NotImplementedException("Forward reference to element in same page not supported yet");
+				if(targetPageRef.equals(currentPageRef)) throw new com.aoindustries.lang.NotImplementedException("Forward reference to element in same page not supported yet");
 				targetPage = CapturePage.capturePage(
 					servletContext,
 					request,
