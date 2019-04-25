@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -58,7 +58,7 @@ final public class NewsUtils {
 		HttpServletResponse response,
 		Page page
 	) throws ServletException, IOException {
-		final List<News> found = new ArrayList<News>();
+		final List<News> found = new ArrayList<>();
 		final SemanticCMS semanticCMS = SemanticCMS.getInstance(servletContext);
 		CapturePage.traversePagesAnyOrder(
 			servletContext,
