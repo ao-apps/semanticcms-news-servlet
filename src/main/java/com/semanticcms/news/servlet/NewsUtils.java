@@ -50,7 +50,7 @@ final public class NewsUtils {
 	/**
 	 * Gets all the new items in the given page and below, sorted by news natural order.
 	 * 
-	 * @see  News#compareTo(com.semanticcms.news.model.News)
+	 * @see  com.semanticcms.news.model.News#compareTo(com.semanticcms.news.model.News)
 	 */
 	public static List<News> findAllNews(
 		ServletContext servletContext,
