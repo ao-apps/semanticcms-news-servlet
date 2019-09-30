@@ -164,7 +164,7 @@ final public class NewsImpl {
 			}
 			if(captureLevel == CaptureLevel.BODY) {
 				// Write an empty div so links to this news ID work
-				String refId = PageIndex.getRefIdInPage(servletContext, request, currentPage, news.getId());
+				String refId = PageIndex.getRefIdInPage(request, currentPage, news.getId());
 				out.append("<div class=\"semanticcms-news-anchor\" id=\"");
 				encodeTextInXhtmlAttribute(refId, out);
 				out.append("\"></div>");
