@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -22,6 +22,7 @@
  */
 package com.semanticcms.news.servlet;
 
+import com.aoindustries.html.servlet.HtmlEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
 import com.aoindustries.net.DomainName;
@@ -218,7 +219,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 				servletContext,
 				request,
 				response,
-				capturedOut,
+				(capturedOut == null) ? null : HtmlEE.get(servletContext, request, capturedOut),
 				element
 			);
 		} finally {
