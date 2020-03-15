@@ -37,7 +37,7 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-31T00:37:52-0500"
-		dateModified="2020-03-07T06:01:29-0600"
+		dateModified="2020-03-15T00:27:10-05:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.semanticcms:semanticcms-news-servlet:pom.version}" />
@@ -60,6 +60,7 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 						This is to help 3rd-party parsers that fail to perform full Maven-compatible substitutions.
 					</li>
 					<li>Using <ao:a href="https://aoindustries.com/ao-fluent-html/">AO Fluent HTML</ao:a> for HTML generation.</li>
+					<li>Updated dependencies.</li>
 				</ul>
 			</changelog:release>
 		</c:if>
