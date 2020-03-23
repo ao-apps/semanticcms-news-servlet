@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -24,7 +24,6 @@ package com.semanticcms.news.servlet;
 
 import com.semanticcms.core.controller.CapturePage;
 import com.semanticcms.core.controller.SemanticCMS;
-import com.semanticcms.core.model.ChildRef;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
@@ -32,7 +31,6 @@ import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.news.model.News;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -66,29 +64,16 @@ final public class NewsUtils {
 			response,
 			page,
 			CaptureLevel.META,
-			new CapturePage.PageHandler<Void>() {
-				@Override
-				public Void handlePage(Page page) throws ServletException, IOException {
-					for(Element element : page.getElements()) {
-						if(element instanceof News) {
-							found.add((News)element);
-						}
+			(Page p) -> {
+				for(Element element : p.getElements()) {
+					if(element instanceof News) {
+						found.add((News)element);
 					}
-					return null;
 				}
+				return null;
 			},
-			new CapturePage.TraversalEdges() {
-				@Override
-				public Collection<ChildRef> getEdges(Page page) {
-					return page.getChildRefs();
-				}
-			},
-			new CapturePage.EdgeFilter() {
-				@Override
-				public boolean applyEdge(PageRef childPage) {
-					return semanticCMS.getBook(childPage.getBookRef()).isAccessible();
-				}
-			}
+			(Page p) -> p.getChildRefs(),
+			(PageRef childPage) -> semanticCMS.getBook(childPage.getBookRef()).isAccessible()
 		);
 		Collections.sort(found);
 		return Collections.unmodifiableList(found);
