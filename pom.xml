@@ -38,6 +38,8 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 / <a target="_top" href="${project.url}">${shortTitle}</a>]]></javadoc.breadcrumbs>
 		<shortTitle>Servlet</shortTitle>
 		<description.html><![CDATA[<a target="_top" href="https://semanticcms.com/news/">SemanticCMS newsfeeds</a> in a Servlet environment.]]></description.html>
+		<!-- Dependencies -->
+		<org.apache.commons:commons-lang3:version>3.9</org.apache.commons:commons-lang3:version>
 	</properties>
 
 	<name>SemanticCMS News Servlet</name>
@@ -67,9 +69,11 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 								<link>${javadoc.link.javaee}</link>
 								<!-- Direct -->
 								<link>https://aoindustries.com/ao-encoding/apidocs/</link>
+								<link>https://aoindustries.com/ao-fluent-html/apidocs/</link>
+								<link>https://aoindustries.com/ao-fluent-html/servlet/apidocs/</link>
 								<link>https://aoindustries.com/ao-io-buffer/apidocs/</link>
-								<link>https://aoindustries.com/ao-lang/apidocs/</link>
 								<link>https://aoindustries.com/ao-taglib/apidocs/</link>
+								<link>https://commons.apache.org/proper/commons-lang/javadocs/api-${org.apache.commons:commons-lang3:version}/</link>
 								<link>https://www.joda.org/joda-time/apidocs/</link>
 								<link>https://semanticcms.com/core/model/apidocs/</link>
 								<link>https://semanticcms.com/core/servlet/apidocs/</link>
@@ -95,13 +99,19 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 				<groupId>com.aoindustries</groupId><artifactId>ao-encoding</artifactId><version>3.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
+				<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html</artifactId><version>0.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+			</dependency>
+			<dependency>
+				<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html-servlet</artifactId><version>0.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+			</dependency>
+			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId><version>3.2.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoindustries</groupId><artifactId>ao-lang</artifactId><version>4.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+				<groupId>com.aoindustries</groupId><artifactId>ao-taglib</artifactId><version>5.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoindustries</groupId><artifactId>ao-taglib</artifactId><version>5.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+				<groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId><version>${org.apache.commons:commons-lang3:version}</version>
 			</dependency>
 			<dependency>
 				<groupId>joda-time</groupId><artifactId>joda-time</artifactId><version>2.10.5</version>
@@ -133,13 +143,19 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 			<groupId>com.aoindustries</groupId><artifactId>ao-encoding</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html-servlet</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.aoindustries</groupId><artifactId>ao-lang</artifactId>
+			<groupId>com.aoindustries</groupId><artifactId>ao-taglib</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.aoindustries</groupId><artifactId>ao-taglib</artifactId>
+			<groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId><artifactId>joda-time</artifactId>
