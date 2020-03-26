@@ -212,7 +212,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 				servletContext,
 				request,
 				response,
-				(capturedOut == null) ? null : HtmlEE.get(servletContext, request, capturedOut),
+				(capturedOut == null) ? null : HtmlEE.get(servletContext, request, response, capturedOut),
 				element
 			);
 		} finally {
