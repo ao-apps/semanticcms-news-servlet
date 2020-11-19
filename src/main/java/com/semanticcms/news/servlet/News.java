@@ -22,12 +22,12 @@
  */
 package com.semanticcms.news.servlet;
 
+import com.aoindustries.encoding.taglib.EncodingBufferedSimpleTag;
 import com.aoindustries.html.servlet.HtmlEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
 import com.aoindustries.net.DomainName;
 import com.aoindustries.net.Path;
-import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Link;
 import com.semanticcms.core.pages.CaptureLevel;
@@ -210,7 +210,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		super.doBody(captureLevel, body);
 		BufferWriter capturedOut;
 		if(captureLevel == CaptureLevel.BODY) {
-			capturedOut = AutoEncodingBufferedTag.newBufferWriter(request);
+			capturedOut = EncodingBufferedSimpleTag.newBufferWriter(request);
 		} else {
 			capturedOut = null;
 		}
