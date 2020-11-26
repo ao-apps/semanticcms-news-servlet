@@ -37,7 +37,7 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-31T00:37:52-0500"
-		dateModified="2020-11-25T03:39:05-06:00"
+		dateModified="2020-11-25T23:21:39-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.semanticcms:semanticcms-news-servlet:pom.version}" />
@@ -55,6 +55,10 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 			>
 				<ul>
 					<li>Added <core:link book="/core/model" page="/" /> domain support.</li>
+					<li>
+						Avoiding forward lookup in same page, which is not yet supported, when a news item has both
+						element and title set.
+					</li>
 				</ul>
 			</changelog:release>
 		</c:if>
