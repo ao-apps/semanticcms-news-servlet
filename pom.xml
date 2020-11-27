@@ -78,11 +78,6 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding</outputDirectory>
 										</artifactItem>
 										<artifactItem>
-											<groupId>com.aoindustries</groupId><artifactId>ao-encoding-taglib</artifactId>
-											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
-											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding-taglib</outputDirectory>
-										</artifactItem>
-										<artifactItem>
 											<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html</artifactId>
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
 											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-fluent-html</outputDirectory>
@@ -91,11 +86,6 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 											<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html-servlet</artifactId>
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
 											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-fluent-html-servlet</outputDirectory>
-										</artifactItem>
-										<artifactItem>
-											<groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId>
-											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
-											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-io-buffer</outputDirectory>
 										</artifactItem>
 										<artifactItem>
 											<groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId>
@@ -124,6 +114,11 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
 											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-news-model</outputDirectory>
 										</artifactItem>
+										<artifactItem>
+											<groupId>com.semanticcms</groupId><artifactId>semanticcms-section-servlet</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-section-servlet</outputDirectory>
+										</artifactItem>
 									</artifactItems>
 								</configuration>
 							</execution>
@@ -139,20 +134,12 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding</location>
 								</offlineLink>
 								<offlineLink>
-									<url>https://aoindustries.com/ao-encoding/taglib/apidocs/</url>
-									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding-taglib</location>
-								</offlineLink>
-								<offlineLink>
 									<url>https://aoindustries.com/ao-fluent-html/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-fluent-html</location>
 								</offlineLink>
 								<offlineLink>
 									<url>https://aoindustries.com/ao-fluent-html/servlet/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-fluent-html-servlet</location>
-								</offlineLink>
-								<offlineLink>
-									<url>https://aoindustries.com/ao-io-buffer/apidocs/</url>
-									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-io-buffer</location>
 								</offlineLink>
 								<offlineLink>
 									<url>https://commons.apache.org/proper/commons-lang/javadocs/api-${commons-lang3.version}/</url>
@@ -175,6 +162,10 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 								<offlineLink>
 									<url>https://semanticcms.com/news/model/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-news-model</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://semanticcms.com/section/servlet/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-section-servlet</location>
 								</offlineLink>
 								<!-- Java SE -->
 								<offlineLink>
@@ -201,16 +192,10 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 				<groupId>com.aoindustries</groupId><artifactId>ao-encoding</artifactId><version>3.1.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoindustries</groupId><artifactId>ao-encoding-taglib</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
-			</dependency>
-			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html</artifactId><version>0.2.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html-servlet</artifactId><version>0.1.0${POST-SNAPSHOT}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId><version>3.3.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId><version>${commons-lang3.version}</version>
@@ -221,13 +206,16 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 				<groupId>joda-time</groupId><artifactId>joda-time</artifactId><version>2.10.8</version>
 			</dependency>
 			<dependency>
-				<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-model</artifactId><version>1.12.0${POST-SNAPSHOT}</version>
+				<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-model</artifactId><version>1.13.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
 				<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-servlet</artifactId><version>1.16.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-model</artifactId><version>1.1.6${POST-SNAPSHOT}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.semanticcms</groupId><artifactId>semanticcms-section-servlet</artifactId><version>1.10.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<!-- Transitive -->
 			<dependency>
@@ -238,6 +226,12 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 			</dependency>
 			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-encoding-servlet</artifactId><version>3.0.0${POST-SNAPSHOT}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aoindustries</groupId><artifactId>ao-encoding-taglib</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId><version>3.3.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-lang</artifactId><version>4.6.1${POST-SNAPSHOT}</version>
@@ -278,6 +272,15 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>aocode-public</artifactId><version>4.3.0${POST-SNAPSHOT}</version>
 			</dependency>
+			<!-- javaee-web-api-bom: <groupId>javax.servlet</groupId><artifactId>jstl</artifactId> -->
+			<dependency>
+				<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId><version>1.13.1-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+			</dependency>
+			<dependency>
+				<groupId>com.semanticcms</groupId><artifactId>semanticcms-section-model</artifactId><version>1.5.2${POST-SNAPSHOT}</version>
+			</dependency>
+			<!-- Runtime Transitive -->
+			<!-- javaee-web-api-bom: <groupId>org.glassfish.web</groupId><artifactId>jstl-impl</artifactId> -->
 			<!-- BOM -->
 			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>javaee-web-api-bom</artifactId><version>6.0.1${POST-SNAPSHOT}</version>
@@ -293,16 +296,10 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 			<groupId>com.aoindustries</groupId><artifactId>ao-encoding</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.aoindustries</groupId><artifactId>ao-encoding-taglib</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html-servlet</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId>
@@ -324,6 +321,9 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 		</dependency>
 		<dependency>
 			<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.semanticcms</groupId><artifactId>semanticcms-section-servlet</artifactId>
 		</dependency>
 	</dependencies>
 </project>
