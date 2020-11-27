@@ -37,7 +37,7 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-31T00:37:52-0500"
-		dateModified="2020-11-25T23:21:39-06:00"
+		dateModified="2020-11-27T03:04:31-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.semanticcms:semanticcms-news-servlet:pom.version}" />
@@ -58,6 +58,10 @@ along with semanticcms-news-servlet.  If not, see <http://www.gnu.org/licenses /
 					<li>
 						Avoiding forward lookup in same page, which is not yet supported, when a news item has both
 						element and title set.
+					</li>
+					<li>
+						News elements now trigger table of contents generation.  This allows links to the news element
+						to scroll to a meaningful position.
 					</li>
 				</ul>
 			</changelog:release>

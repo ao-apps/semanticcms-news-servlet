@@ -22,16 +22,14 @@
  */
 package com.semanticcms.news.servlet;
 
-import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.html.servlet.HtmlEE;
-import com.aoindustries.io.buffer.BufferResult;
-import com.aoindustries.io.buffer.BufferWriter;
 import com.aoindustries.net.DomainName;
 import com.aoindustries.net.Path;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Link;
 import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.core.pages.local.PageContext;
+import com.semanticcms.core.renderer.html.PageIndex;
 import com.semanticcms.core.servlet.Element;
 import com.semanticcms.news.renderer.html.NewsHtmlRenderer;
 import java.io.IOException;
@@ -204,32 +202,27 @@ public class News extends Element<com.semanticcms.news.model.News> {
 		return this;
 	}
 
-	private BufferResult writeMe;
+	private PageIndex pageIndex;
 	@Override
 	protected void doBody(CaptureLevel captureLevel, Body<? super com.semanticcms.news.model.News> body) throws ServletException, IOException, SkipPageException {
+		pageIndex = PageIndex.getCurrentPageIndex(request);
 		super.doBody(captureLevel, body);
-		BufferWriter capturedOut;
-		if(captureLevel == CaptureLevel.BODY) {
-			capturedOut = EncodingBufferedTag.newBufferWriter(request);
-		} else {
-			capturedOut = null;
-		}
-		try {
-			NewsHtmlRenderer.writeNewsImpl(
-				servletContext,
-				request,
-				response,
-				(capturedOut == null) ? null : HtmlEE.get(servletContext, request, response, capturedOut),
-				element
-			);
-		} finally {
-			if(capturedOut != null) capturedOut.close();
-		}
-		writeMe = capturedOut==null ? null : capturedOut.getResult();
+		NewsHtmlRenderer.doBodyImpl(
+			servletContext,
+			request,
+			response,
+			element
+		);
 	}
 
 	@Override
-	public void writeTo(Writer out, ElementContext context) throws IOException {
-		if(writeMe != null) writeMe.writeTo(out);
+	public void writeTo(Writer out, ElementContext context) throws IOException, ServletException {
+		NewsHtmlRenderer.writeNewsImpl(
+			request,
+			HtmlEE.get(servletContext, request, response, out),
+			context,
+			element,
+			pageIndex
+		);
 	}
 }
