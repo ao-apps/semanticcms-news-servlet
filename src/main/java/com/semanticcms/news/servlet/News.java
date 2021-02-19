@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017, 2020  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -22,7 +22,7 @@
  */
 package com.semanticcms.news.servlet;
 
-import com.aoindustries.html.servlet.HtmlEE;
+import com.aoindustries.html.servlet.DocumentEE;
 import com.aoindustries.net.DomainName;
 import com.aoindustries.net.Path;
 import com.semanticcms.core.model.ElementContext;
@@ -217,9 +217,8 @@ public class News extends Element<com.semanticcms.news.model.News> {
 
 	@Override
 	public void writeTo(Writer out, ElementContext context) throws IOException, ServletException {
-		NewsHtmlRenderer.writeNewsImpl(
-			request,
-			HtmlEE.get(servletContext, request, response, out),
+		NewsHtmlRenderer.writeNewsImpl(request,
+			DocumentEE.get(servletContext, request, response, out),
 			context,
 			element,
 			pageIndex
