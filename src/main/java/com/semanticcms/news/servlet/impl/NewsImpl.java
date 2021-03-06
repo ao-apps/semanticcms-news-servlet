@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2019, 2020, 2021  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -22,8 +22,9 @@
  */
 package com.semanticcms.news.servlet.impl;
 
-import static com.aoindustries.encoding.TextInXhtmlAttributeEncoder.encodeTextInXhtmlAttribute;
-import com.aoindustries.html.Document;
+import com.aoindustries.html.DIV_factory;
+import com.aoindustries.html.NAV_factory;
+import com.aoindustries.html.PalpableContent;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Page;
@@ -178,9 +179,12 @@ final public class NewsImpl {
 		}
 	}
 
-	public static void writeNewsImpl(
+	/**
+	 * @param <__>  {@link PalpableContent} provides both {@link NAV_factory} and {@link DIV_factory}.
+	 */
+	public static <__ extends PalpableContent<__>> void writeNewsImpl(
 		HttpServletRequest request,
-		Document document,
+		__ content,
 		ElementContext context,
 		News news,
 		PageIndex pageIndex
@@ -188,7 +192,7 @@ final public class NewsImpl {
 		Page page = news.getPage();
 		// Write table of contents before this, if needed on the page
 		try {
-			SectionImpl.writeToc(request, document, context, page);
+			SectionImpl.writeToc(request, content, context, page);
 		} catch(Error | RuntimeException | ServletException | IOException e) {
 			throw e;
 		} catch(Exception e) {
@@ -196,9 +200,7 @@ final public class NewsImpl {
 		}
 		// Write an empty div so links to this news ID work
 		String refId = PageIndex.getRefIdInPage(request, page, news.getId());
-		document.out.append("<div class=\"semanticcms-news-anchor\" id=\"");
-		encodeTextInXhtmlAttribute(refId, document.out);
-		document.out.append("\"></div>");
+		content.div().clazz("semanticcms-news-anchor").id(refId).__();
 		// TODO: Should we show the news entry here when no news view is active?
 		// TODO: Hide from tree views, or leave but link to "news" view when news view is active?
 	}
