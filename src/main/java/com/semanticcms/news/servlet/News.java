@@ -212,7 +212,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
 	public void writeTo(Writer out, ElementContext context) throws IOException, ServletException {
 		NewsImpl.writeNewsImpl(
 			request,
-			DocumentEE.get(servletContext, request, response, out),
+			new DocumentEE(servletContext, request, response, out),
 			context,
 			element,
 			pageIndex
