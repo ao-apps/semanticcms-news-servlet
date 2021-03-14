@@ -22,10 +22,10 @@
  */
 package com.semanticcms.news.servlet.impl;
 
-import com.aoindustries.html.AnyDocument;
-import com.aoindustries.html.DIV;
-import com.aoindustries.html.NAV;
-import com.aoindustries.html.PalpableContent;
+import com.aoindustries.html.any.AnyDIV;
+import com.aoindustries.html.any.AnyDocument;
+import com.aoindustries.html.any.AnyNAV;
+import com.aoindustries.html.any.AnyPalpableContent;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Page;
@@ -181,11 +181,11 @@ final public class NewsImpl {
 	}
 
 	/**
-	 * @param  <__>  {@link PalpableContent} provides both {@link NAV} and {@link DIV}.
+	 * @param  <__>  {@link AnyPalpableContent} provides both {@link AnyNAV} and {@link AnyDIV}.
 	 */
 	public static <
 		D extends AnyDocument<D>,
-		__ extends PalpableContent<D, __>
+		__ extends AnyPalpableContent<D, __>
 	> void writeNewsImpl(
 		HttpServletRequest request,
 		__ content,
