@@ -22,9 +22,9 @@
  */
 package com.semanticcms.news.servlet;
 
-import com.aoindustries.html.servlet.DocumentEE;
-import com.aoindustries.net.DomainName;
-import com.aoindustries.net.Path;
+import com.aoapps.html.servlet.DocumentEE;
+import com.aoapps.net.DomainName;
+import com.aoapps.net.Path;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Link;
 import com.semanticcms.core.pages.CaptureLevel;
