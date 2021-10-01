@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -22,6 +22,7 @@
  */
 package com.semanticcms.news.servlet;
 
+import com.aoapps.servlet.attribute.ScopeEE;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
 import java.util.Arrays;
@@ -41,7 +42,8 @@ final public class RssUtils {
 	 */
 	private static final String RSS_SERVLET_CLASSNAME = "com.semanticcms.news.rss.RssServlet";
 
-	private static final String ISS_RSS_ENABLED_CACHE_KEY = RssUtils.class.getName() + ".isRssEnabled";
+	private static final ScopeEE.Application.Attribute<Boolean> ISS_RSS_ENABLED_CACHE_KEY =
+		ScopeEE.APPLICATION.attribute(RssUtils.class.getName() + ".isRssEnabled");
 
 	/**
 	 * Checks if the RSS module is installed.  This is done by checking for the existence of the
@@ -49,18 +51,14 @@ final public class RssUtils {
 	 * repeatedly.
 	 */
 	public static boolean isRssEnabled(ServletContext servletContext) {
-		// Note: no locking performed since it's ok for two threads to do the work concurrently at first
-		Boolean isRssEnabled = (Boolean)servletContext.getAttribute(ISS_RSS_ENABLED_CACHE_KEY);
-		if(isRssEnabled == null) {
+		return ISS_RSS_ENABLED_CACHE_KEY.context(servletContext).computeIfAbsent(__ -> {
 			try {
 				Class.forName(RSS_SERVLET_CLASSNAME);
-				isRssEnabled = true;
+				return true;
 			} catch(ClassNotFoundException e) {
-				isRssEnabled = false;
+				return false;
 			}
-			servletContext.setAttribute(ISS_RSS_ENABLED_CACHE_KEY, isRssEnabled);
-		}
-		return isRssEnabled;
+		});
 	}
 
 	/**
@@ -111,7 +109,7 @@ final public class RssUtils {
 
 	/**
 	 * Gets the servletPath to the RSS feed for the give page.
-	 * 
+	 *
 	 * @see  #getRssServletPath(com.semanticcms.core.model.PageRef)
 	 */
 	public static String getRssServletPath(Page page) {
