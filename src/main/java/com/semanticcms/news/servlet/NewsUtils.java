@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019, 2020  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -40,11 +40,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Utilities for working with news.
  */
-final public class NewsUtils {
+public final class NewsUtils {
 
 	/**
 	 * Gets all the new items in the given page and below, sorted by news natural order.
-	 * 
+	 *
 	 * @see  com.semanticcms.news.model.News#compareTo(com.semanticcms.news.model.News)
 	 */
 	public static List<News> findAllNews(

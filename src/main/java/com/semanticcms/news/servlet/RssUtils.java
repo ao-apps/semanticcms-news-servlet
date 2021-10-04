@@ -31,7 +31,7 @@ import javax.servlet.ServletContext;
 /**
  * Utilities for working with RSS feeds.
  */
-final public class RssUtils {
+public final class RssUtils {
 
 	public static final String EXTENSION = ".rss";
 
