@@ -26,7 +26,6 @@ import com.semanticcms.core.controller.CapturePage;
 import com.semanticcms.core.controller.SemanticCMS;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.Page;
-import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.news.model.News;
 import java.io.IOException;
@@ -64,7 +63,7 @@ public final class NewsUtils {
 			response,
 			page,
 			CaptureLevel.META,
-			(Page p) -> {
+			p -> {
 				for(Element element : p.getElements()) {
 					if(element instanceof News) {
 						found.add((News)element);
@@ -72,8 +71,8 @@ public final class NewsUtils {
 				}
 				return null;
 			},
-			(Page p) -> p.getChildRefs(),
-			(PageRef childPage) -> semanticCMS.getBook(childPage.getBookRef()).isAccessible()
+			Page::getChildRefs,
+			childPage -> semanticCMS.getBook(childPage.getBookRef()).isAccessible()
 		);
 		Collections.sort(found);
 		return Collections.unmodifiableList(found);
