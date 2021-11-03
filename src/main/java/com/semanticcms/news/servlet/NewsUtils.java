@@ -24,7 +24,6 @@ package com.semanticcms.news.servlet;
 
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.Page;
-import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CapturePage;
 import com.semanticcms.news.model.News;
@@ -60,7 +59,7 @@ public final class NewsUtils {
 			response,
 			page,
 			CaptureLevel.META,
-			(Page p) -> {
+			p -> {
 				for(Element element : p.getElements()) {
 					if(element instanceof News) {
 						found.add((News)element);
@@ -68,8 +67,8 @@ public final class NewsUtils {
 				}
 				return null;
 			},
-			(Page p) -> p.getChildRefs(),
-			(PageRef childPage) -> childPage.getBook() != null
+			Page::getChildRefs,
+			childPage -> childPage.getBook() != null
 		);
 		Collections.sort(found);
 		return Collections.unmodifiableList(found);
