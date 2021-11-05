@@ -31,7 +31,10 @@ import javax.servlet.ServletContext;
 /**
  * Utilities for working with RSS feeds.
  */
-public final class RssUtils {
+public abstract class RssUtils {
+
+	/** Make no instances. */
+	private RssUtils() {throw new AssertionError();}
 
 	public static final String EXTENSION = ".rss";
 
@@ -114,11 +117,5 @@ public final class RssUtils {
 	 */
 	public static String getRssServletPath(Page page) {
 		return getRssServletPath(page.getPageRef());
-	}
-
-	/**
-	 * Make no instances.
-	 */
-	private RssUtils() {
 	}
 }
