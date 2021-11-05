@@ -45,7 +45,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.NotImplementedException;
 
-public final class NewsImpl {
+public abstract class NewsImpl {
+
+	/** Make no instances. */
+	private NewsImpl() {throw new AssertionError();}
 
 	// TODO: This should be in the servlet implementation, not in the renderer.  May be able to simplify dependencies.
 	public static void doBodyImpl(
@@ -203,11 +206,5 @@ public final class NewsImpl {
 		content.div().clazz("semanticcms-news-anchor").id(refId).__();
 		// TODO: Should we show the news entry here when no news view is active?
 		// TODO: Hide from tree views, or leave but link to "news" view when news view is active?
-	}
-
-	/**
-	 * Make no instances.
-	 */
-	private NewsImpl() {
 	}
 }

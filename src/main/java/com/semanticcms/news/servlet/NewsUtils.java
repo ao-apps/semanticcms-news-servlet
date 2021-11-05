@@ -39,7 +39,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Utilities for working with news.
  */
-public final class NewsUtils {
+public abstract class NewsUtils {
+
+	/** Make no instances. */
+	private NewsUtils() {throw new AssertionError();}
 
 	/**
 	 * Gets all the new items in the given page and below, sorted by news natural order.
@@ -72,11 +75,5 @@ public final class NewsUtils {
 		);
 		Collections.sort(found);
 		return Collections.unmodifiableList(found);
-	}
-
-	/**
-	 * Make no instances.
-	 */
-	private NewsUtils() {
 	}
 }
