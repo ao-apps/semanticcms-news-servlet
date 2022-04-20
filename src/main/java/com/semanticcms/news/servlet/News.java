@@ -42,181 +42,181 @@ import org.joda.time.ReadableDateTime;
 
 public class News extends Element<com.semanticcms.news.model.News> {
 
-	public News(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		com.semanticcms.news.model.News element,
-		ReadableDateTime pubDate
-	) {
-		super(
-			servletContext,
-			request,
-			response,
-			element
-		);
-		element.setView(SemanticCMS.DEFAULT_VIEW_NAME);
-		element.setPubDate(pubDate);
-	}
+  public News(
+    ServletContext servletContext,
+    HttpServletRequest request,
+    HttpServletResponse response,
+    com.semanticcms.news.model.News element,
+    ReadableDateTime pubDate
+  ) {
+    super(
+      servletContext,
+      request,
+      response,
+      element
+    );
+    element.setView(SemanticCMS.DEFAULT_VIEW_NAME);
+    element.setPubDate(pubDate);
+  }
 
-	public News(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		ReadableDateTime pubDate
-	) {
-		this(
-			servletContext,
-			request,
-			response,
-			new com.semanticcms.news.model.News(),
-			pubDate
-		);
-	}
+  public News(
+    ServletContext servletContext,
+    HttpServletRequest request,
+    HttpServletResponse response,
+    ReadableDateTime pubDate
+  ) {
+    this(
+      servletContext,
+      request,
+      response,
+      new com.semanticcms.news.model.News(),
+      pubDate
+    );
+  }
 
-	public News(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		com.semanticcms.news.model.News element,
-		ReadableDateTime pubDate,
-		String description
-	) {
-		this(servletContext, request, response, element, pubDate);
-		element.setDescription(description);
-	}
+  public News(
+    ServletContext servletContext,
+    HttpServletRequest request,
+    HttpServletResponse response,
+    com.semanticcms.news.model.News element,
+    ReadableDateTime pubDate,
+    String description
+  ) {
+    this(servletContext, request, response, element, pubDate);
+    element.setDescription(description);
+  }
 
-	public News(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		ReadableDateTime pubDate,
-		String description
-	) {
-		this(
-			servletContext,
-			request,
-			response,
-			new com.semanticcms.news.model.News(),
-			pubDate
-		);
-		element.setDescription(description);
-	}
+  public News(
+    ServletContext servletContext,
+    HttpServletRequest request,
+    HttpServletResponse response,
+    ReadableDateTime pubDate,
+    String description
+  ) {
+    this(
+      servletContext,
+      request,
+      response,
+      new com.semanticcms.news.model.News(),
+      pubDate
+    );
+    element.setDescription(description);
+  }
 
-	/**
-	 * Creates news in the current page context.
-	 *
-	 * @see  PageContext
-	 */
-	public News(
-		com.semanticcms.news.model.News element,
-		ReadableDateTime pubDate
-	) {
-		this(
-			PageContext.getServletContext(),
-			PageContext.getRequest(),
-			PageContext.getResponse(),
-			element,
-			pubDate
-		);
-	}
+  /**
+   * Creates news in the current page context.
+   *
+   * @see  PageContext
+   */
+  public News(
+    com.semanticcms.news.model.News element,
+    ReadableDateTime pubDate
+  ) {
+    this(
+      PageContext.getServletContext(),
+      PageContext.getRequest(),
+      PageContext.getResponse(),
+      element,
+      pubDate
+    );
+  }
 
-	/**
-	 * Creates news in the current page context.
-	 *
-	 * @see  PageContext
-	 */
-	public News(ReadableDateTime pubDate) {
-		this(
-			PageContext.getServletContext(),
-			PageContext.getRequest(),
-			PageContext.getResponse(),
-			new com.semanticcms.news.model.News(),
-			pubDate
-		);
-	}
+  /**
+   * Creates news in the current page context.
+   *
+   * @see  PageContext
+   */
+  public News(ReadableDateTime pubDate) {
+    this(
+      PageContext.getServletContext(),
+      PageContext.getRequest(),
+      PageContext.getResponse(),
+      new com.semanticcms.news.model.News(),
+      pubDate
+    );
+  }
 
-	/**
-	 * Creates news in the current page context.
-	 *
-	 * @see  PageContext
-	 */
-	public News(
-		com.semanticcms.news.model.News element,
-		ReadableDateTime pubDate,
-		String description
-	) {
-		this(element, pubDate);
-		element.setDescription(description);
-	}
+  /**
+   * Creates news in the current page context.
+   *
+   * @see  PageContext
+   */
+  public News(
+    com.semanticcms.news.model.News element,
+    ReadableDateTime pubDate,
+    String description
+  ) {
+    this(element, pubDate);
+    element.setDescription(description);
+  }
 
-	/**
-	 * Creates news in the current page context.
-	 *
-	 * @see  PageContext
-	 */
-	public News(ReadableDateTime pubDate, String description) {
-		this(pubDate);
-		element.setDescription(description);
-	}
+  /**
+   * Creates news in the current page context.
+   *
+   * @see  PageContext
+   */
+  public News(ReadableDateTime pubDate, String description) {
+    this(pubDate);
+    element.setDescription(description);
+  }
 
-	@Override
-	public News id(String id) {
-		super.id(id);
-		return this;
-	}
+  @Override
+  public News id(String id) {
+    super.id(id);
+    return this;
+  }
 
-	public News book(String book) {
-		element.setBook(book);
-		return this;
-	}
+  public News book(String book) {
+    element.setBook(book);
+    return this;
+  }
 
-	public News page(String page) {
-		element.setTargetPage(page);
-		return this;
-	}
+  public News page(String page) {
+    element.setTargetPage(page);
+    return this;
+  }
 
-	public News element(String element) {
-		this.element.setElement(element);
-		return this;
-	}
+  public News element(String element) {
+    this.element.setElement(element);
+    return this;
+  }
 
-	public News view(String view) {
-		element.setView(view);
-		return this;
-	}
+  public News view(String view) {
+    element.setView(view);
+    return this;
+  }
 
-	public News title(String title) {
-		element.setTitle(title);
-		return this;
-	}
+  public News title(String title) {
+    element.setTitle(title);
+    return this;
+  }
 
-	public News description(String description) {
-		element.setDescription(description);
-		return this;
-	}
+  public News description(String description) {
+    element.setDescription(description);
+    return this;
+  }
 
-	private PageIndex pageIndex;
-	@Override
-	protected void doBody(CaptureLevel captureLevel, Body<? super com.semanticcms.news.model.News> body) throws ServletException, IOException, SkipPageException {
-		pageIndex = PageIndex.getCurrentPageIndex(request);
-		super.doBody(captureLevel, body);
-		NewsImpl.doBodyImpl(
-			servletContext,
-			request,
-			response,
-			element
-		);
-	}
+  private PageIndex pageIndex;
+  @Override
+  protected void doBody(CaptureLevel captureLevel, Body<? super com.semanticcms.news.model.News> body) throws ServletException, IOException, SkipPageException {
+    pageIndex = PageIndex.getCurrentPageIndex(request);
+    super.doBody(captureLevel, body);
+    NewsImpl.doBodyImpl(
+      servletContext,
+      request,
+      response,
+      element
+    );
+  }
 
-	@Override
-	public void writeTo(Writer out, ElementContext context) throws IOException, ServletException {
-		NewsImpl.writeNewsImpl(
-			request,
-			new DocumentEE(servletContext, request, response, out),
-			context,
-			element,
-			pageIndex
-		);
-	}
+  @Override
+  public void writeTo(Writer out, ElementContext context) throws IOException, ServletException {
+    NewsImpl.writeNewsImpl(
+      request,
+      new DocumentEE(servletContext, request, response, out),
+      context,
+      element,
+      pageIndex
+    );
+  }
 }

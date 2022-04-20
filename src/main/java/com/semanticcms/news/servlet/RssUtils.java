@@ -34,89 +34,93 @@ import javax.servlet.ServletContext;
  */
 public final class RssUtils {
 
-	/** Make no instances. */
-	private RssUtils() {throw new AssertionError();}
+  /** Make no instances. */
+  private RssUtils() {
+    throw new AssertionError();
+  }
 
-	public static final String EXTENSION = ".rss";
+  public static final String EXTENSION = ".rss";
 
-	public static final String CONTENT_TYPE = "application/rss+xml";
+  public static final String CONTENT_TYPE = "application/rss+xml";
 
-	/**
-	 * Using classname to avoid introducing cyclic dependency.
-	 */
-	private static final String RSS_SERVLET_CLASSNAME = "com.semanticcms.news.rss.RssServlet";
+  /**
+   * Using classname to avoid introducing cyclic dependency.
+   */
+  private static final String RSS_SERVLET_CLASSNAME = "com.semanticcms.news.rss.RssServlet";
 
-	private static final ScopeEE.Application.Attribute<Boolean> ISS_RSS_ENABLED_CACHE_KEY =
-		ScopeEE.APPLICATION.attribute(RssUtils.class.getName() + ".isRssEnabled");
+  private static final ScopeEE.Application.Attribute<Boolean> ISS_RSS_ENABLED_CACHE_KEY =
+    ScopeEE.APPLICATION.attribute(RssUtils.class.getName() + ".isRssEnabled");
 
-	/**
-	 * Checks if the RSS module is installed.  This is done by checking for the existence of the
-	 * servlet class.  This is cached in application scope to avoid throwing and catching ClassNotFoundException
-	 * repeatedly.
-	 */
-	public static boolean isRssEnabled(ServletContext servletContext) {
-		return ISS_RSS_ENABLED_CACHE_KEY.context(servletContext).computeIfAbsent(__ -> {
-			try {
-				Class.forName(RSS_SERVLET_CLASSNAME);
-				return true;
-			} catch(ClassNotFoundException e) {
-				return false;
-			}
-		});
-	}
+  /**
+   * Checks if the RSS module is installed.  This is done by checking for the existence of the
+   * servlet class.  This is cached in application scope to avoid throwing and catching ClassNotFoundException
+   * repeatedly.
+   */
+  public static boolean isRssEnabled(ServletContext servletContext) {
+    return ISS_RSS_ENABLED_CACHE_KEY.context(servletContext).computeIfAbsent(__ -> {
+      try {
+        Class.forName(RSS_SERVLET_CLASSNAME);
+        return true;
+      } catch (ClassNotFoundException e) {
+        return false;
+      }
+    });
+  }
 
-	/**
-	 * The resources in the order they will be checked, last one assumed if none specifically found as a resource.
-	 */
-	private static final String[] RESOURCE_EXTENSIONS = {
-		".jspx",
-		".jsp",
-		""
-	};
+  /**
+   * The resources in the order they will be checked, last one assumed if none specifically found as a resource.
+   */
+  private static final String[] RESOURCE_EXTENSIONS = {
+    ".jspx",
+    ".jsp",
+    ""
+  };
 
-	public static String[] getResourceExtensions() {
-		return Arrays.copyOf(RESOURCE_EXTENSIONS, RESOURCE_EXTENSIONS.length);
-	}
+  public static String[] getResourceExtensions() {
+    return Arrays.copyOf(RESOURCE_EXTENSIONS, RESOURCE_EXTENSIONS.length);
+  }
 
-	/**
-	 * The extensions that will not ever be included.
-	 */
-	private static final String[] PROTECTED_EXTENSIONS = {
-		".inc.jspx",
-		".inc.jsp",
-		".jspf"
-	};
+  /**
+   * The extensions that will not ever be included.
+   */
+  private static final String[] PROTECTED_EXTENSIONS = {
+    ".inc.jspx",
+    ".inc.jsp",
+    ".jspf"
+  };
 
-	/**
-	 * Checks that the given resource should not be included under any circumstances.
-	 */
-	public static boolean isProtectedExtension(String path) {
-		for(String extension : PROTECTED_EXTENSIONS) {
-			if(path.endsWith(extension)) return true;
-		}
-		return false;
-	}
+  /**
+   * Checks that the given resource should not be included under any circumstances.
+   */
+  public static boolean isProtectedExtension(String path) {
+    for (String extension : PROTECTED_EXTENSIONS) {
+      if (path.endsWith(extension)) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-	/**
-	 * Gets the servletPath to the RSS feed for the give page ref.
-	 */
-	public static String getRssServletPath(PageRef pageRef) {
-		String servletPath = pageRef.getServletPath();
-		for(String extension : RESOURCE_EXTENSIONS) {
-			if(servletPath.endsWith(extension)) {
-				servletPath = servletPath.substring(0, servletPath.length() - extension.length());
-				break;
-			}
-		}
-		return servletPath + EXTENSION;
-	}
+  /**
+   * Gets the servletPath to the RSS feed for the give page ref.
+   */
+  public static String getRssServletPath(PageRef pageRef) {
+    String servletPath = pageRef.getServletPath();
+    for (String extension : RESOURCE_EXTENSIONS) {
+      if (servletPath.endsWith(extension)) {
+        servletPath = servletPath.substring(0, servletPath.length() - extension.length());
+        break;
+      }
+    }
+    return servletPath + EXTENSION;
+  }
 
-	/**
-	 * Gets the servletPath to the RSS feed for the give page.
-	 *
-	 * @see  #getRssServletPath(com.semanticcms.core.model.PageRef)
-	 */
-	public static String getRssServletPath(Page page) {
-		return getRssServletPath(page.getPageRef());
-	}
+  /**
+   * Gets the servletPath to the RSS feed for the give page.
+   *
+   * @see  #getRssServletPath(com.semanticcms.core.model.PageRef)
+   */
+  public static String getRssServletPath(Page page) {
+    return getRssServletPath(page.getPageRef());
+  }
 }
