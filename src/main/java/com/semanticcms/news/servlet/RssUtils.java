@@ -49,7 +49,7 @@ public final class RssUtils {
   private static final String RSS_SERVLET_CLASSNAME = "com.semanticcms.news.rss.RssServlet";
 
   private static final ScopeEE.Application.Attribute<Boolean> ISS_RSS_ENABLED_CACHE_KEY =
-    ScopeEE.APPLICATION.attribute(RssUtils.class.getName() + ".isRssEnabled");
+      ScopeEE.APPLICATION.attribute(RssUtils.class.getName() + ".isRssEnabled");
 
   /**
    * Checks if the RSS module is installed.  This is done by checking for the existence of the
@@ -71,9 +71,9 @@ public final class RssUtils {
    * The resources in the order they will be checked, last one assumed if none specifically found as a resource.
    */
   private static final String[] RESOURCE_EXTENSIONS = {
-    ".jspx",
-    ".jsp",
-    ""
+      ".jspx",
+      ".jsp",
+      ""
   };
 
   public static String[] getResourceExtensions() {
@@ -84,9 +84,9 @@ public final class RssUtils {
    * The extensions that will not ever be included.
    */
   private static final String[] PROTECTED_EXTENSIONS = {
-    ".inc.jspx",
-    ".inc.jsp",
-    ".jspf"
+      ".inc.jspx",
+      ".inc.jsp",
+      ".jspf"
   };
 
   /**

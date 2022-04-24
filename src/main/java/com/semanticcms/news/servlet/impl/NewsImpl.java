@@ -55,10 +55,10 @@ public final class NewsImpl {
 
   // TODO: This should be in the servlet implementation, not in the renderer.  May be able to simplify dependencies.
   public static void doBodyImpl(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    News news
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      News news
   ) throws ServletException, IOException {
     // Get the current capture state
     final CaptureLevel captureLevel = CaptureLevel.getCaptureLevel(request);
@@ -77,10 +77,10 @@ public final class NewsImpl {
           targetPageRef = currentPageRef;
         } else {
           targetPageRef = PageRefResolver.getPageRef(
-            servletContext,
-            request,
-            null,
-            news.getTargetPage()
+              servletContext,
+              request,
+              null,
+              news.getTargetPage()
           );
         }
       } else {
@@ -88,10 +88,10 @@ public final class NewsImpl {
           throw new ServletException("page required when book provided.");
         }
         targetPageRef = PageRefResolver.getPageRef(
-          servletContext,
-          request,
-          news.getBook(),
-          news.getTargetPage()
+            servletContext,
+            request,
+            news.getBook(),
+            news.getTargetPage()
         );
       }
       // Add page links
@@ -107,12 +107,12 @@ public final class NewsImpl {
         if (targetPageRef.getBook() == null) {
           targetPage = null;
         } else if (
-          // Short-cut for element already added above within current page
-          targetPageRef.equals(currentPageRef)
-          && (
-            newsElement == null
-            || currentPage.getElementsById().containsKey(newsElement)
-          )
+            // Short-cut for element already added above within current page
+            targetPageRef.equals(currentPageRef)
+                && (
+                newsElement == null
+                    || currentPage.getElementsById().containsKey(newsElement)
+            )
         ) {
           targetPage = currentPage;
         } else {
@@ -122,11 +122,11 @@ public final class NewsImpl {
             throw new NotImplementedException("Forward reference to element in same page not supported yet");
           }
           targetPage = CapturePage.capturePage(
-            servletContext,
-            request,
-            response,
-            targetPageRef,
-            newsElement == null ? CaptureLevel.PAGE : CaptureLevel.META
+              servletContext,
+              request,
+              response,
+              targetPageRef,
+              newsElement == null ? CaptureLevel.PAGE : CaptureLevel.META
           );
         }
         // Find the optional target element, may remain null when in missing book
@@ -201,11 +201,11 @@ public final class NewsImpl {
    * @param  content  {@link AnyPalpableContent} provides both {@link AnyNAV} and {@link AnyDIV}.
    */
   public static void writeNewsImpl(
-    HttpServletRequest request,
-    AnyPalpableContent<?, ?> content,
-    ElementContext context,
-    News news,
-    PageIndex pageIndex
+      HttpServletRequest request,
+      AnyPalpableContent<?, ?> content,
+      ElementContext context,
+      News news,
+      PageIndex pageIndex
   ) throws ServletException, IOException {
     Page page = news.getPage();
     // Write table of contents before this, if needed on the page
