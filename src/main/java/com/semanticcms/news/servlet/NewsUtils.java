@@ -56,29 +56,29 @@ public final class NewsUtils {
    * @see  com.semanticcms.news.model.News#compareTo(com.semanticcms.news.model.News)
    */
   public static List<News> findAllNews(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    Page page
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Page page
   ) throws ServletException, IOException {
     final List<News> found = new ArrayList<>();
     final SemanticCMS semanticCMS = SemanticCMS.getInstance(servletContext);
     CapturePage.traversePagesAnyOrder(
-      servletContext,
-      request,
-      response,
-      page,
-      CaptureLevel.META,
-      p -> {
-        for (Element element : p.getElements()) {
-          if (element instanceof News) {
-            found.add((News)element);
+        servletContext,
+        request,
+        response,
+        page,
+        CaptureLevel.META,
+        p -> {
+          for (Element element : p.getElements()) {
+            if (element instanceof News) {
+              found.add((News) element);
+            }
           }
-        }
-        return null;
-      },
-      Page::getChildRefs,
-      childPage -> semanticCMS.getBook(childPage.getBookRef()).isAccessible()
+          return null;
+        },
+        Page::getChildRefs,
+        childPage -> semanticCMS.getBook(childPage.getBookRef()).isAccessible()
     );
     Collections.sort(found);
     return Collections.unmodifiableList(found);
