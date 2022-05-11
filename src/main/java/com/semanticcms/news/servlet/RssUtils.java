@@ -57,7 +57,7 @@ public final class RssUtils {
    * repeatedly.
    */
   public static boolean isRssEnabled(ServletContext servletContext) {
-    return ISS_RSS_ENABLED_CACHE_KEY.context(servletContext).computeIfAbsent(__ -> {
+    return ISS_RSS_ENABLED_CACHE_KEY.context(servletContext).computeIfAbsent(name -> {
       try {
         Class.forName(RSS_SERVLET_CLASSNAME);
         return true;

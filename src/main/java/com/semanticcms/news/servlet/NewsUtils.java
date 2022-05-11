@@ -40,8 +40,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Utilities for working with news.
- *
+ * <p>
  * TODO: Move to different module?
+ * </p>
  */
 public final class NewsUtils {
 
@@ -62,7 +63,7 @@ public final class NewsUtils {
       Page page
   ) throws ServletException, IOException {
     final List<News> found = new ArrayList<>();
-    final SemanticCMS semanticCMS = SemanticCMS.getInstance(servletContext);
+    final SemanticCMS semanticCms = SemanticCMS.getInstance(servletContext);
     CapturePage.traversePagesAnyOrder(
         servletContext,
         request,
@@ -78,7 +79,7 @@ public final class NewsUtils {
           return null;
         },
         Page::getChildRefs,
-        childPage -> semanticCMS.getBook(childPage.getBookRef()).isAccessible()
+        childPage -> semanticCms.getBook(childPage.getBookRef()).isAccessible()
     );
     Collections.sort(found);
     return Collections.unmodifiableList(found);

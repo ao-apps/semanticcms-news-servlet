@@ -42,8 +42,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
 import org.joda.time.ReadableDateTime;
 
+/**
+ * SemanticCMS newsfeeds in a Servlet environment.
+ */
 public class News extends Element<com.semanticcms.news.model.News> {
 
+  /**
+   * Creates news.
+   */
   public News(
       ServletContext servletContext,
       HttpServletRequest request,
@@ -61,6 +67,9 @@ public class News extends Element<com.semanticcms.news.model.News> {
     element.setPubDate(pubDate);
   }
 
+  /**
+   * Creates news.
+   */
   public News(
       ServletContext servletContext,
       HttpServletRequest request,
@@ -76,6 +85,9 @@ public class News extends Element<com.semanticcms.news.model.News> {
     );
   }
 
+  /**
+   * Creates news.
+   */
   public News(
       ServletContext servletContext,
       HttpServletRequest request,
@@ -88,6 +100,9 @@ public class News extends Element<com.semanticcms.news.model.News> {
     element.setDescription(description);
   }
 
+  /**
+   * Creates news.
+   */
   public News(
       ServletContext servletContext,
       HttpServletRequest request,
