@@ -39,4 +39,4 @@ module com.semanticcms.news.servlet {
   requires com.semanticcms.news.renderer.html; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-renderer-html</artifactId>
   // Transitive
   requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
-} // TODO: Avoiding rewrite-maven-plugin-4.22.2 truncation
+}
