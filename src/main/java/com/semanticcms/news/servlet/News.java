@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017, 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2020, 2021, 2022, 2023  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -215,6 +215,11 @@ public class News extends Element<com.semanticcms.news.model.News> {
 
   public News description(String description) {
     element.setDescription(description);
+    return this;
+  }
+
+  public News allowRobots(Boolean allowRobots) {
+    element.setAllowRobots(allowRobots);
     return this;
   }
 
