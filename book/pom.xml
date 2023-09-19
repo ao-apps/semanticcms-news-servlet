@@ -41,6 +41,9 @@ along with semanticcms-news-servlet.  If not, see <https://www.gnu.org/licenses/
     <documented.artifactId>semanticcms-news-servlet</documented.artifactId>
     <documented.name>SemanticCMS News Servlet</documented.name>
     <documented.description>SemanticCMS newsfeeds in a Servlet environment.</documented.description>
+    <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a>
+/ <a target="${javadoc.target}" href="https://semanticcms.com/news/">News</a>
+/ <a target="${javadoc.target}" href="${project.url}">Servlet</a>]]></javadoc.breadcrumbs>
 
     <description.html><![CDATA[Documentation for <a target="${javadoc.target}" href="${project.url}">${documented.name}</a> in <a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
   </properties>
