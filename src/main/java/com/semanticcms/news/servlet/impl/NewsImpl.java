@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -227,7 +227,7 @@ public final class NewsImpl {
       throw new ServletException(e);
     }
     // Write an empty div so links to this news ID work
-    String refId = PageIndex.getRefIdInPage(request, page, news.getId());
+    String refId = PageIndex.getRefIdInPage(pageIndex, page, news.getId());
     content.div().clazz("semanticcms-news-anchor").id(refId).__();
     // TODO: Should we show the news entry here when no news view is active?
     // TODO: Hide from tree views, or leave but link to "news" view when news view is active?
