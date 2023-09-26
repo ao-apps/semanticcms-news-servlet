@@ -43,8 +43,6 @@ along with semanticcms-news-servlet.  If not, see <https://www.gnu.org/licenses/
     <description.html><![CDATA[<a target="${javadoc.target}" href="https://semanticcms.com/news/">SemanticCMS newsfeeds</a> in a Servlet environment.]]></description.html>
     <!-- TODO: Implement tests -->
     <sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
-    <!-- Dependencies -->
-    <commons-lang3.version>3.13.0</commons-lang3.version>
   </properties>
 
   <name>SemanticCMS News Servlet</name>
@@ -218,7 +216,7 @@ along with semanticcms-news-servlet.  If not, see <https://www.gnu.org/licenses/
                   <location>${project.build.directory}/offlineLinks/com.aoapps/ao-servlet-util</location>
                 </offlineLink>
                 <offlineLink>
-                  <url>https://javadoc.io/doc/org.apache.commons/commons-lang3/${commons-lang3.version}/</url>
+                  <url>https://javadoc.io/doc/org.apache.commons/commons-lang3/${org.apache.commons:commons-lang3:jar.version}/</url>
                   <location>${project.build.directory}/offlineLinks/org.apache.commons/commons-lang3</location>
                 </offlineLink>
                 <!-- ao-javadoc-offline: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId><classifier>javadoc</classifier> -->
@@ -314,7 +312,7 @@ along with semanticcms-news-servlet.  If not, see <https://www.gnu.org/licenses/
         <groupId>com.aoapps</groupId><artifactId>ao-servlet-util</artifactId><version>5.2.1${POST-SNAPSHOT}</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId><version>${commons-lang3.version}</version>
+        <groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId><version>3.13.0</version>
       </dependency>
       <!-- javaee-web-api-bom: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
       <!-- javaee-web-api-bom: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId> -->
