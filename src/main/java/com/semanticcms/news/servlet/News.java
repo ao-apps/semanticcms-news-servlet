@@ -33,6 +33,7 @@ import com.semanticcms.core.pages.local.PageContext;
 import com.semanticcms.core.renderer.html.PageIndex;
 import com.semanticcms.core.servlet.Element;
 import com.semanticcms.news.renderer.html.NewsHtmlRenderer;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.Writer;
 import javax.servlet.ServletContext;
@@ -125,6 +126,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
    *
    * @see  PageContext
    */
+  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public News(
       com.semanticcms.news.model.News element,
       ReadableDateTime pubDate
@@ -143,6 +145,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
    *
    * @see  PageContext
    */
+  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public News(ReadableDateTime pubDate) {
     this(
         PageContext.getServletContext(),
@@ -158,6 +161,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
    *
    * @see  PageContext
    */
+  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public News(
       com.semanticcms.news.model.News element,
       ReadableDateTime pubDate,
@@ -172,6 +176,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
    *
    * @see  PageContext
    */
+  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public News(ReadableDateTime pubDate, String description) {
     this(pubDate);
     element.setDescription(description);
