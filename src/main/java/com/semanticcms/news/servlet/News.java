@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017, 2020, 2021, 2022, 2023  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2020, 2021, 2022, 2023, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -186,36 +186,71 @@ public class News extends Element<com.semanticcms.news.model.News> {
     return this;
   }
 
+  /**
+   * See {@link com.semanticcms.news.model.News#setBook(java.lang.String)}.
+   *
+   * @return {@code this}
+   */
   public News book(String book) {
     element.setBook(book);
     return this;
   }
 
+  /**
+   * See {@link com.semanticcms.news.model.News#setTargetPage(java.lang.String)}.
+   *
+   * @return {@code this}
+   */
   public News page(String page) {
     element.setTargetPage(page);
     return this;
   }
 
+  /**
+   * See {@link com.semanticcms.news.model.News#setElement(java.lang.String)}.
+   *
+   * @return {@code this}
+   */
   public News element(String element) {
     this.element.setElement(element);
     return this;
   }
 
+  /**
+   * See {@link com.semanticcms.news.model.News#setView(java.lang.String)}.
+   *
+   * @return {@code this}
+   */
   public News view(String view) {
     element.setView(view);
     return this;
   }
 
+  /**
+   * See {@link com.semanticcms.news.model.News#setTitle(java.lang.String)}.
+   *
+   * @return {@code this}
+   */
   public News title(String title) {
     element.setTitle(title);
     return this;
   }
 
+  /**
+   * See {@link com.semanticcms.news.model.News#setDescription(java.lang.String)}.
+   *
+   * @return {@code this}
+   */
   public News description(String description) {
     element.setDescription(description);
     return this;
   }
 
+  /**
+   * See {@link com.semanticcms.news.model.News#setAllowRobots(java.lang.Boolean)}.
+   *
+   * @return {@code this}
+   */
   public News allowRobots(Boolean allowRobots) {
     element.setAllowRobots(allowRobots);
     return this;
