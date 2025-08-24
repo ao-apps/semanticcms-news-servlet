@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017, 2020, 2021, 2022, 2023, 2024  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2020, 2021, 2022, 2023, 2024, 2025  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -126,7 +126,6 @@ public class News extends Element<com.semanticcms.news.model.News> {
    *
    * @see  PageContext
    */
-  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public News(
       com.semanticcms.news.model.News element,
       ReadableDateTime pubDate
@@ -145,7 +144,6 @@ public class News extends Element<com.semanticcms.news.model.News> {
    *
    * @see  PageContext
    */
-  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public News(ReadableDateTime pubDate) {
     this(
         PageContext.getServletContext(),
