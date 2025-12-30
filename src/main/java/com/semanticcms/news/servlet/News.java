@@ -36,12 +36,12 @@ import com.semanticcms.news.renderer.html.NewsHtmlRenderer;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.Writer;
+import java.time.ZonedDateTime;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
-import org.joda.time.ReadableDateTime;
 
 /**
  * SemanticCMS newsfeeds in a Servlet environment.
@@ -56,7 +56,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
       HttpServletRequest request,
       HttpServletResponse response,
       com.semanticcms.news.model.News element,
-      ReadableDateTime pubDate
+      ZonedDateTime pubDate
   ) {
     super(
         servletContext,
@@ -75,7 +75,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
       ServletContext servletContext,
       HttpServletRequest request,
       HttpServletResponse response,
-      ReadableDateTime pubDate
+      ZonedDateTime pubDate
   ) {
     this(
         servletContext,
@@ -94,7 +94,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
       HttpServletRequest request,
       HttpServletResponse response,
       com.semanticcms.news.model.News element,
-      ReadableDateTime pubDate,
+      ZonedDateTime pubDate,
       String description
   ) {
     this(servletContext, request, response, element, pubDate);
@@ -108,7 +108,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
       ServletContext servletContext,
       HttpServletRequest request,
       HttpServletResponse response,
-      ReadableDateTime pubDate,
+      ZonedDateTime pubDate,
       String description
   ) {
     this(
@@ -128,7 +128,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
    */
   public News(
       com.semanticcms.news.model.News element,
-      ReadableDateTime pubDate
+      ZonedDateTime pubDate
   ) {
     this(
         PageContext.getServletContext(),
@@ -144,7 +144,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
    *
    * @see  PageContext
    */
-  public News(ReadableDateTime pubDate) {
+  public News(ZonedDateTime pubDate) {
     this(
         PageContext.getServletContext(),
         PageContext.getRequest(),
@@ -162,7 +162,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
   @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public News(
       com.semanticcms.news.model.News element,
-      ReadableDateTime pubDate,
+      ZonedDateTime pubDate,
       String description
   ) {
     this(element, pubDate);
@@ -175,7 +175,7 @@ public class News extends Element<com.semanticcms.news.model.News> {
    * @see  PageContext
    */
   @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
-  public News(ReadableDateTime pubDate, String description) {
+  public News(ZonedDateTime pubDate, String description) {
     this(pubDate);
     element.setDescription(description);
   }
