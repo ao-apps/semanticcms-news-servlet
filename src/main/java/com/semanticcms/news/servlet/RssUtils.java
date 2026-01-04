@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-servlet - SemanticCMS newsfeeds in a Servlet environment.
- * Copyright (C) 2016, 2017, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2021, 2022, 2025, 2026  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -26,8 +26,8 @@ package com.semanticcms.news.servlet;
 import com.aoapps.servlet.attribute.ScopeEE;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
+import jakarta.servlet.ServletContext;
 import java.util.Arrays;
-import javax.servlet.ServletContext;
 
 /**
  * Utilities for working with RSS feeds.
