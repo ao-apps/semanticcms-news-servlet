@@ -118,7 +118,7 @@ public final class RssUtils {
   /**
    * Gets the servletPath to the RSS feed for the give page.
    *
-   * @see  #getRssServletPath(com.semanticcms.core.model.PageRef)
+   * @see  RssUtils#getRssServletPath(com.semanticcms.core.model.PageRef)
    */
   public static String getRssServletPath(Page page) {
     return getRssServletPath(page.getPageRef());
