@@ -21,8 +21,6 @@
  * along with semanticcms-news-servlet.  If not, see <https://www.gnu.org/licenses/>.
  */
 module com.semanticcms.news.servlet {
-  exports com.semanticcms.news.servlet;
-  exports com.semanticcms.news.servlet.impl;
   // Direct
   requires com.aoapps.html.any; // <groupId>com.aoapps</groupId><artifactId>ao-fluent-html-any</artifactId>
   requires com.aoapps.html.servlet; // <groupId>com.aoapps</groupId><artifactId>ao-fluent-html-servlet</artifactId>
@@ -36,4 +34,7 @@ module com.semanticcms.news.servlet {
   requires com.semanticcms.news.model; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-model</artifactId>
   requires com.semanticcms.section.servlet; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-section-servlet</artifactId>
   requires static com.github.spotbugs.annotations; // <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-annotations</artifactId>
+
+  exports com.semanticcms.news.servlet;
+  exports com.semanticcms.news.servlet.impl;
 }
